@@ -1,14 +1,20 @@
 import Head from 'next/head'
-import { Text, Heading, Flex, Box } from "@chakra-ui/react"
+import dynamic from 'next/dynamic'
 
+const Map = dynamic(
+  () => import('../components/Map'), // replace '@components/map' with your component's location
+  { loading: () => <p>A map is loading</p>, ssr: false } // This line is important. It's what prevents server-side render
+)
 
 export default function Home() {
-  return (
-    <div>
-      <Head>
-        <title>Map</title>
-      </Head>
-      <Text>The map</Text>
+
+    return (
+      <div>
+        <Head>
+          <title>Map</title>
+        </Head>
+        <div id="mapid"></div>
+        <Map />
     </div>
   )
 }
