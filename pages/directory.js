@@ -9,7 +9,9 @@ export default function Home() {
             <Head>
                 <title>Directory</title>
             </Head>
-            <Text>The Directory</Text>
+            <Flex borderWidth={2} borderRadius="md" borderColor="black" width="85%" margin="auto" padding="8" >
+                <Text>The Directory</Text>
+            </Flex>
         </div>
     )
 }

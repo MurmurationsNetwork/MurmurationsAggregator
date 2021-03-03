@@ -8,7 +8,7 @@ function TabLinks() {
     const router = useRouter()
     if (router.pathname === '/')
         return (
-            <Flex justifyContent="space-evenly" w="50%" mx="auto" py="2">
+            <Flex justifyContent="space-evenly" w="50%" mx="auto" py="4">
                 <Heading size="md" color="brand.100" textDecoration="underline" sx={{ textUnderlineOffset: 10 }}>
                     View Map
                 </Heading>
@@ -35,7 +35,7 @@ function TabLinks() {
         )
     else if (router.pathname === '/directory')
         return (
-            <Flex justifyContent="space-evenly" w="50%" mx="auto" py="2">
+            <Flex justifyContent="space-evenly" w="50%" mx="auto" py="4">
                 <LinkBox>
                     <Box className="map-link">
                         <Heading size="md">

@@ -13,7 +13,7 @@ function Layout({ children }) {
         <div>
             <Header />
             <main>
-                <Box bg="brand.300">
+                <Box bg="brand.300" py="5">
                     <TabLinks />
                     {children}
                 </Box>

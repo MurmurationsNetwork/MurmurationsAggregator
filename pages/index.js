@@ -13,7 +13,6 @@ export default function Home() {
         <Head>
           <title>Map</title>
         </Head>
-        <div id="mapid"></div>
         <Map />
     </div>
   )
