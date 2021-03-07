@@ -1,6 +1,5 @@
 import * as React from "react"
-import Image from 'next/image'
-import { Link, Heading, Text, Box, Flex, Center, Spacer } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 
 import Header from "./Header"
 import Footer from "./Footer"

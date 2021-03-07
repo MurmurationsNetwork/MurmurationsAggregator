@@ -16,7 +16,6 @@ export default function Directory() {
             <Box borderWidth={2} borderRadius="md" borderColor="black" width="85%" height="400px" margin="auto" padding="8" overflowY="scroll" >
                 {!data ? <p>loading</p> :
                     data.map((node) => {
-                        console.log(node)
                         return (
                             <div key={node.id}>
                                 <Box borderWidth={2} borderRadius="md" borderColor="black" backgroundColor="brand.600" width="65%" margin="auto" marginBottom="4" padding="4">
