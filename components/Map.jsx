@@ -1,18 +1,55 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import L from 'leaflet';
+import NextLink from "next/link"
+import { Heading, Image, LinkBox, LinkOverlay, Flex, Text } from "@chakra-ui/react"
+
 import 'leaflet/dist/leaflet.css'
 
-const Map = () => {
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: '/images/marker-icon-2x.png',
+  iconUrl: '/images/marker-icon.png',
+  shadowUrl: '/images/marker-shadow.png'
+});
+
+
+const Map = ({nodes}) => {
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} style={{height: 400, width: "85%", margin: "auto", marginBottom: "20px"}}>
+    <MapContainer center={[51.505, -0.09]} zoom={2} scrollWheelZoom={false} style={{height: 400, width: "85%", margin: "auto", marginBottom: "20px"}}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      {nodes.map((node) => {
+        return(
+          <div key={`${node.id}`}>
+            <Marker position={[parseFloat(node.data.geolocation.lat), parseFloat(node.data.geolocation.lon)]}>
+              <Popup>
+                <LinkBox>
+                <Flex alignItems="center">
+                  <Image
+                    src={node.data.image[0].url}
+                    alt="Node logo"
+                    width={8}
+                    height={8}
+                  />
+                  <Heading size="sm" paddingLeft="4">
+                      <NextLink href={node.data.url} passHref>
+                      <LinkOverlay>{node.data.name}</LinkOverlay>
+                      </NextLink>
+                  </Heading>
+                </Flex>
+                  <Text color="white">
+                    {node.data.description}
+                  </Text>
+                </LinkBox>
+              </Popup>
+            </Marker>
+          </div>
+          )    
+      })}
     </MapContainer>
   )
 }

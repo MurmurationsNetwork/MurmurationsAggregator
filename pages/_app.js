@@ -48,7 +48,7 @@ const colors = {
     300: "#FFF8EF",
     400: "#2a69ac",
     500: "#757575",
-    600: "F1F1F1"
+    600: "#F1F1F1"
   },
   title: "#232323",
   subtitle: "#757575",
@@ -76,7 +76,18 @@ const fontSizes = {
   "9xl": "6.192rem",
 }
 
-const theme = extendTheme({ colors, fonts, fontSizes })
+const styles = {
+  global: {
+    ".leaflet-popup-content-wrapper": {
+      backgroundColor: "brand.200",
+    },
+    " .leaflet-container a > .leaflet-popup-content-wrapper": {
+      color: "white"
+    }
+  }
+}
+
+const theme = extendTheme({ styles, colors, fonts, fontSizes })
 
 
 function MyApp({ Component, pageProps }) {

@@ -1,19 +1,25 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
+import useSWR from 'swr'
+import fetcher from '@/utils/fetcher'
 
 const Map = dynamic(
-  () => import('../components/Map'), // replace '@components/map' with your component's location
-  { loading: () => <p>A map is loading</p>, ssr: false } // This line is important. It's what prevents server-side render
+  () => import('../components/Map'),
+  {
+    loading: () => <p>A map is loading</p>,
+    ssr: false
+  }
 )
 
 export default function Home() {
+  const { data, error } = useSWR('/api/nodes', fetcher)
 
     return (
       <div>
         <Head>
           <title>Map</title>
         </Head>
-        <Map />
+        {!data ? <p>loading</p> : <Map nodes={data} />}
     </div>
   )
 }
