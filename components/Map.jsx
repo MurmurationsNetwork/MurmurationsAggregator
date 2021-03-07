@@ -41,7 +41,7 @@ const Map = ({nodes}) => {
                       </NextLink>
                   </Heading>
                 </Flex>
-                  <Text color="white">
+                  <Text>
                     {node.data.description}
                   </Text>
                 </LinkBox>

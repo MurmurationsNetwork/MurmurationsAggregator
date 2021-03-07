@@ -81,9 +81,6 @@ const styles = {
     ".leaflet-popup-content-wrapper": {
       backgroundColor: "brand.200",
     },
-    " .leaflet-container a > .leaflet-popup-content-wrapper": {
-      color: "white"
-    }
   }
 }
 
