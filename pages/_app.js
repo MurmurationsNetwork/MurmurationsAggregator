@@ -2,6 +2,8 @@ import * as React from "react"
 import { ChakraProvider } from "@chakra-ui/react"
 import { extendTheme } from "@chakra-ui/react"
 import { Global } from "@emotion/react"
+import fetcher from '@/utils/fetcher'
+import useSWR from 'swr'
 
 import '../styles/globals.css'
 
@@ -88,6 +90,10 @@ const theme = extendTheme({ styles, colors, fonts, fontSizes })
 
 
 function MyApp({ Component, pageProps }) {
+  // get nodes from index to add to Firebase last validated after Unix timestamp
+  const time = (new Date().setHours(0, 0, 0, 0) / 1000).toString();
+  const { data, error } = useSWR(`/api/node-index?last_validated=${time}`, fetcher)
+  console.log(data)
 
   return (
     <ChakraProvider theme={theme}>

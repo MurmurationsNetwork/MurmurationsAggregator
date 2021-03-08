@@ -1,4 +1,4 @@
-import { getNodes, getProfileData } from '@/lib/api'
+import { getNodes, getNodesPageSize, getProfileData } from '@/lib/api'
 import { addNode } from '@/lib/db'
 
 export default async (req, res) => {
@@ -8,6 +8,9 @@ export default async (req, res) => {
   if (req.query["last_validated"]) {
     nodes = await getNodes(req.query["last_validated"])
     if (nodes.data) {
+      if (nodes.meta.total_pages > 1) {
+        nodes = await getNodesPageSize(req.query["last_validated"], nodes.meta.number_of_results)
+      }
       for (let node of nodes.data) {
         const profileData = await getProfileData(node.profile_url)
         await addNode(profileData)
