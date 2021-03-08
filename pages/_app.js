@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useState } from 'react'
 import { ChakraProvider } from "@chakra-ui/react"
 import { extendTheme } from "@chakra-ui/react"
 import { Global } from "@emotion/react"
@@ -90,16 +91,19 @@ const theme = extendTheme({ styles, colors, fonts, fontSizes })
 
 
 function MyApp({ Component, pageProps }) {
-  // get nodes from index to add to Firebase last validated after Unix timestamp
+  // get nodes from index to add their profile data to Firebase last validated after Unix timestamp
   const time = (new Date().setHours(0, 0, 0, 0) / 1000).toString();
-  const { data, error } = useSWR(`/api/node-index?last_validated=${time}`, fetcher)
-  console.log(data)
+  const { data: indexData, error: indexError } = useSWR(`/api/node-index?last_validated=${time}`, fetcher);
+
+  //get profile data from Firebase for UI use
+  const [schema, setSchema] = useState('all');
+  const { data, error } = useSWR(schema === 'all' ? '/api/nodes' : `/api/nodes?schema=${schema}`, fetcher);
 
   return (
     <ChakraProvider theme={theme}>
       <Fonts />
-      <Layout>
-        <Component {...pageProps} />
+      <Layout setSchema={setSchema}>
+        <Component {...pageProps} nodeData={data} />
       </Layout>
     </ChakraProvider>
   )

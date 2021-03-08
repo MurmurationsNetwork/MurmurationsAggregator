@@ -30,13 +30,13 @@ const Map = ({nodes}) => {
                 <LinkBox>
                 <Flex alignItems="center">
                   <Image
-                    src={node.data.image[0].url}
+                    src={node.data.image ? node.data.image[0].url : '/images/vercel.svg'}
                     alt="Node logo"
                     width={8}
                     height={8}
                   />
                   <Heading size="sm" paddingLeft="4">
-                      <NextLink href={node.data.url} passHref>
+                      <NextLink href={node.data.url || '/directory'} passHref>
                       <LinkOverlay>{node.data.name}</LinkOverlay>
                       </NextLink>
                   </Heading>
