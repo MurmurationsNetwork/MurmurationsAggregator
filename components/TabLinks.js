@@ -8,19 +8,19 @@ function TabLinks() {
     const router = useRouter()
     if (router.pathname === '/')
         return (
-            <Flex justifyContent="space-evenly" w="50%" mx="auto" py="4">
-                <Heading size="md" color="brand.100" textDecoration="underline" sx={{ textUnderlineOffset: 10 }}>
+            <Flex justifyContent="space-evenly" w={["70%", "70%", "50%"]} mx="auto" py="4" flexDirection={["column", "column", "row"]} alignItems="center">
+                <Heading fontSize={["lg", "lg", "xl"]} color="brand.100" textDecoration="underline" marginBottom={[2, 2, 0]} sx={{ textUnderlineOffset: 5 }}>
                     View Map
                 </Heading>
                 <LinkBox>
                     <Box className="listing-link">
-                        <Heading size="md">
+                        <Heading fontSize={["lg", "lg", "xl"]}>
                             <Box color="brand.500"
                                 sx={{
                                     ".listing-link:hover &": {
                                         color: "brand.100",
                                         textDecoration: "underline",
-                                        textUnderlineOffset: 10
+                                        textUnderlineOffset: 5
                                     },
                                 }}>
                                 <NextLink href="/directory" passHref>
@@ -35,16 +35,16 @@ function TabLinks() {
         )
     else if (router.pathname === '/directory')
         return (
-            <Flex justifyContent="space-evenly" w="50%" mx="auto" py="4">
+            <Flex justifyContent="space-evenly" w={["70%", "70%", "50%"]} mx="auto" py="4" flexDirection={["column", "column", "row"]} alignItems="center">
                 <LinkBox>
                     <Box className="map-link">
-                        <Heading size="md">
+                        <Heading fontSize={["lg", "lg", "xl"]} marginBottom={[2, 2, 0]}>
                             <Box color="brand.500"
                                 sx={{
                                     ".map-link:hover &": {
                                         color: "brand.100",
                                         textDecoration: "underline",
-                                        textUnderlineOffset: 10
+                                        textUnderlineOffset: 5
                                     },
                                 }}>
                                 <NextLink href="/" passHref>
@@ -54,7 +54,7 @@ function TabLinks() {
                         </Heading>
                     </Box>
                 </LinkBox>
-                <Heading size="md" color="brand.100" textDecoration="underline" sx={{ textUnderlineOffset: 10 }}>
+                <Heading fontSize={["lg", "lg", "xl"]} color="brand.100" textDecoration="underline" sx={{ textUnderlineOffset: 5 }}>
                     View directory listing
                 </Heading>
             </Flex>

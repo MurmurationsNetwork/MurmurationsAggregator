@@ -10,12 +10,12 @@ export default function Directory({ nodeData }) {
             <Head>
                 <title>Directory</title>
             </Head>
-            <Box borderWidth={2} borderRadius="md" borderColor="black" width="85%" height="400px" margin="auto" padding="8" paddingTop="16" overflowY="scroll" >
+            <Box borderWidth={2} borderRadius="md" borderColor="black" width="85%" height="400px" margin="auto" padding={["1", "8"]} paddingTop="16" overflowY="scroll" >
                 {!nodeData ? <p>loading</p> :
                     nodeData.map((node) => {
                         return (
                             <div key={node.id}>
-                                <Box borderWidth={2} borderRadius="md" borderColor="black" backgroundColor="brand.600" width="65%" margin="auto" marginBottom="4" padding="4">
+                                <Box borderWidth={2} borderRadius="md" borderColor="black" backgroundColor="brand.600" maxWidth="80%" margin="auto" marginBottom="4" padding="4">
                                     <LinkBox>
                                         <Flex alignItems="center">
                                             <Image

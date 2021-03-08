@@ -9,18 +9,18 @@ function Header() {
     return (
         <header>
             <Center h="96px">
-                <Flex justify="center">
+                <Flex justify="center" w={['80%', "80", '100%']}>
                     <Image
                         src="/images/murmurations-logo.png"
                         alt="Murmurations logo"
-                        width={102}
-                        height={70}
+                        width={"100%"}
+                        height={"70%"}
                     />
-                    <Box>
-                        <Heading as="h1" size="lg" color="title">
+                    <Box paddingTop="2">
+                        <Heading as="h1" fontSize="xl" color="title">
                             Murmurations
                         </Heading>
-                        <Heading as="h2" size="sm" color="subtitle">
+                        <Heading as="h2" fontSize={["sm", "sm", "md"]} color="subtitle">
                             Making Movements Visible
                         </Heading>
                     </Box>
