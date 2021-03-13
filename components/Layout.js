@@ -25,7 +25,9 @@ function Layout({ children, setSchema }) {
             <Header />
             <main>
                 <Box bg="brand.300" py={["0", "0"]}>
-                    <TabLinks />
+                    <Box display={["block", "block", "none"]}>
+                        <TabLinks />
+                    </Box>
                     <Select pos="absolute" top="25%" right="10%" zIndex="1000" width="25%" borderColor="brand.100" borderWidth="2px" bg="brand.600" placeholder="Select schema" onChange={(e) => handleChange(e.target.value)}>
                         <option value="complementary_currencies-v1"> Complementary Currency schema </option>
                         <option value="murmurations_map-v1">Murmurations map schema</option>

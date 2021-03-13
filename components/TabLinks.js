@@ -8,14 +8,14 @@ function TabLinks() {
     const router = useRouter()
     if (router.pathname === '/')
         return (
-            <Flex justifyContent="space-evenly" w={["70%", "70%", "50%"]} mx="auto" py="4" flexDirection={["column", "column", "row"]} alignItems="center">
+            <Flex justifyContent="space-evenly" w={["70%", "70%", "100%"]} mx="auto" py="4" flexDirection={["column", "column", "row"]} alignItems="center">
                 <Heading fontSize={["lg", "lg", "xl"]} color="brand.100" textDecoration="underline" marginBottom={[2, 2, 0]} sx={{ textUnderlineOffset: 5 }}>
                     View Map
                 </Heading>
                 <LinkBox>
                     <Box className="listing-link">
                         <Heading fontSize={["lg", "lg", "xl"]}>
-                            <Box color="brand.500"
+                            <Box color="secondaryText"
                                 sx={{
                                     ".listing-link:hover &": {
                                         color: "brand.100",
@@ -35,11 +35,11 @@ function TabLinks() {
         )
     else if (router.pathname === '/directory')
         return (
-            <Flex justifyContent="space-evenly" w={["70%", "70%", "50%"]} mx="auto" py="4" flexDirection={["column", "column", "row"]} alignItems="center">
+            <Flex justifyContent="space-evenly" w={["70%", "70%", "100%"]} mx="auto" py="4" flexDirection={["column", "column", "row"]} alignItems="center">
                 <LinkBox>
                     <Box className="map-link">
                         <Heading fontSize={["lg", "lg", "xl"]} marginBottom={[2, 2, 0]}>
-                            <Box color="brand.500"
+                            <Box color="secondaryText"
                                 sx={{
                                     ".map-link:hover &": {
                                         color: "brand.100",

@@ -16,24 +16,24 @@ const Fonts = () => (
     styles={`
 
       @font-face {
-        font-family: 'Libre Baskerville';
+        font-family: 'Poppins';
         font-style: bold;
         font-weight: 700;
         font-display: swap;
-        src: url(https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap) format('woff2');
-      }
-
-      @font-face {
-        font-family: 'Libre Baskerville';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url(https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap) format('woff2');
+        src: url(https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap) format('woff2');
       }
 
       @font-face {
         font-family: 'Poppins';
-        font-style: normal;
+        font-style: medium;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap) format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Poppins';
+        font-style: regular;
         font-weight: 400;
         font-display: swap;
         src: url(https://fonts.googleapis.com/css2?family=Poppins&display=swap) format('woff2');
@@ -43,23 +43,20 @@ const Fonts = () => (
   />
 )
 
-
 const colors = {
   brand: {
     100: "#F96A58",
     200: "#E5A756",
     300: "#FFF8EF",
-    400: "#2a69ac",
-    500: "#757575",
-    600: "#F1F1F1"
+    400: "#757575",
+    500: "#F1F1F1",
   },
-  title: "#232323",
-  subtitle: "#757575",
-  paragraph: "#232323"
+  text: "#232323",
+  secondaryText: "#757575",
 }
 
 const fonts = {
-  heading: "Libre Baskerville",
+  heading: "Poppins, system-ui, sans-serif",
   body: "Poppins, system-ui, sans-serif"
 }
 
