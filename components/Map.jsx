@@ -1,6 +1,5 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import L from 'leaflet';
-import NextLink from "next/link"
 import { Heading, Image, LinkBox, LinkOverlay, Flex, Text } from "@chakra-ui/react"
 
 import 'leaflet/dist/leaflet.css'
@@ -29,12 +28,14 @@ const Map = ({nodes}) => {
               <Popup>
                 <LinkBox>
                 <Flex alignItems="center">
+                {node.data.image &&
                   <Image
-                    src={node.data.image ? node.data.image[0].url : '/images/vercel.svg'}
+                    src={node.data.image[0].url}
                     alt="Node logo"
-                    width={8}
+                    maxWidth={"50%"}
                     height={8}
-                  />
+                />
+                }
                   <Heading size="sm" paddingLeft="4">
                         <a href={node.data.url || '/'}  target="_blank" rel="noopener noreferrer">
                         <LinkOverlay>{node.data.name}</LinkOverlay>

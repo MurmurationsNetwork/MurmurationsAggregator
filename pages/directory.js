@@ -18,15 +18,18 @@ export default function Directory({ nodeData }) {
                                 <Box borderWidth={2} borderRadius="md" borderColor="black" backgroundColor="brand.600" maxWidth="80%" margin="auto" marginBottom="4" padding="4">
                                     <LinkBox>
                                         <Flex alignItems="center">
-                                            <Image
-                                                src={node.data.image ? node.data.image[0].url : '/images/vercel.svg'}
+                                            {node.data.image &&
+                                             <Image
+                                                src={node.data.image[0].url}
                                                 alt="Node logo"
-                                                width={8}
+                                                maxWidth={"50%"}
                                                 height={8}
                                             />
+                                            }
+
                                             <Heading size="sm" paddingLeft="4" textDecoration="underline">
                                                 <a href={node.data.url || '/diretory'} target="_blank" rel="noopener noreferrer">
-                                                    <LinkOverlay>{node.data.name}</LinkOverlay>
+                                                    <LinkOverlay wordBreak="break-all">{node.data.name}</LinkOverlay>
                                                 </a>
                                             </Heading>
                                         </Flex>
