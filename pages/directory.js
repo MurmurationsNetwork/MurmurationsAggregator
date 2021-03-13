@@ -25,9 +25,9 @@ export default function Directory({ nodeData }) {
                                                 height={8}
                                             />
                                             <Heading size="sm" paddingLeft="4" textDecoration="underline">
-                                                <NextLink href={node.data.url || '/directory'} passHref>
+                                                <a href={node.data.url || '/diretory'} target="_blank" rel="noopener noreferrer">
                                                     <LinkOverlay>{node.data.name}</LinkOverlay>
-                                                </NextLink>
+                                                </a>
                                             </Heading>
                                         </Flex>
                                         <Text marginTop="2">{node.data.description}</Text>

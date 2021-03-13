@@ -36,9 +36,9 @@ const Map = ({nodes}) => {
                     height={8}
                   />
                   <Heading size="sm" paddingLeft="4">
-                      <NextLink href={node.data.url || '/directory'} passHref>
-                      <LinkOverlay>{node.data.name}</LinkOverlay>
-                      </NextLink>
+                        <a href={node.data.url || '/'}  target="_blank" rel="noopener noreferrer">
+                        <LinkOverlay>{node.data.name}</LinkOverlay>
+                        </a>
                   </Heading>
                 </Flex>
                   <Text>
