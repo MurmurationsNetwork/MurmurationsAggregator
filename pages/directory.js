@@ -10,7 +10,7 @@ export default function Directory({ nodeData }) {
             <Head>
                 <title>Directory</title>
             </Head>
-            <Box borderWidth={2} borderRadius="md" borderColor="black" width="85%" height={"80vh"} margin="auto" padding={["1", "8"]} paddingTop="16" overflowY="scroll" >
+            <Box borderWidth={2} borderRadius="md" borderColor="black" width="85%" height={"80vh"} margin="auto" padding={["1", "8"]} paddingTop="12" overflowY="scroll" >
                 {!nodeData ? <p>loading</p> :
                     nodeData.map((node) => {
                         return (
