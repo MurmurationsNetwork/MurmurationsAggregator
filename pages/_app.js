@@ -88,8 +88,8 @@ const theme = extendTheme({ styles, colors, fonts, fontSizes })
 
 
 function MyApp({ Component, pageProps }) {
-  const time = Date.now() - 1000 * 300;
-  const { data: indexData, error: indexError } = useSWR(`/api/node-index?last_validated=${time}`, fetcher);
+  const fiveMinutesAgo = Date.now() - 1000 * 300;
+  const { data: indexData, error: indexError } = useSWR(`/api/node-index?last_validated=${fiveMinutesAgo}`, fetcher);
 
   //get profile data from Firebase for UI use
   const [schema, setSchema] = useState('all');
