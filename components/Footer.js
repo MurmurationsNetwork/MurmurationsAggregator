@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, Heading, Text, Spacer, Flex, Center } from "@chakra-ui/react"
+import { Link, Heading, Spacer, Flex, Center } from "@chakra-ui/react"
 
 
 

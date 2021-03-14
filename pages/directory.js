@@ -1,9 +1,38 @@
 import Head from 'next/head'
-import NextLink from "next/link"
+import ReactPaginate from 'react-paginate';
 import { Text, Image, Heading, Flex, Box, LinkBox, LinkOverlay } from "@chakra-ui/react"
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 export default function Directory({ nodeData }) {
+
+    const nodesPerPage = 10;
+    const [loading, setLoading] = useState(true);
+    const [pageToShow, setPageToShow] = useState(0);
+    const [nodePages, setNodePages] = useState([]);
+
+    useEffect(() => {
+        if (nodeData) {
+            let nodePagesToAdd = nodeData.reduce((resultArray, node, index) => {
+                const pageIndex = Math.floor(index / nodesPerPage);
+
+                if (!resultArray[pageIndex]) {
+                    resultArray[pageIndex] = [];
+                }
+
+                resultArray[pageIndex].push(node);
+
+                return resultArray;
+            }, [])
+            setNodePages(nodePagesToAdd);
+            setLoading(false);
+        }
+    }, [nodeData])
+
+    const handlePageClick = (data) => {
+        setPageToShow(data.selected);
+    }
 
     return (
         <div>
@@ -11,8 +40,8 @@ export default function Directory({ nodeData }) {
                 <title>Directory</title>
             </Head>
             <Box borderWidth={2} borderRadius="md" borderColor="black" width="85%" height={"80vh"} margin="auto" padding={["1", "8"]} paddingTop="12" overflowY="scroll" >
-                {!nodeData ? <p>loading</p> :
-                    nodeData.map((node) => {
+                {loading ? <p>loading</p> :
+                    nodePages[pageToShow].map((node) => {
                         return (
                             <div key={node.id}>
                                 <Box borderWidth={2} borderRadius="md" borderColor="black" backgroundColor="brand.600" maxWidth="80%" margin="auto" marginBottom="4" padding="4">
@@ -41,6 +70,18 @@ export default function Directory({ nodeData }) {
                     })
                 }
             </Box>
+            <ReactPaginate
+                previousLabel={"prev"}
+                nextLabel={"next"}
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                pageCount={nodePages.length}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                subContainerClassName={"pages pagination"}
+                activeClassName={"active"} />
         </div>
     )
 }

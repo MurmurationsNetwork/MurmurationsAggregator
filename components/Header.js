@@ -15,8 +15,7 @@ function Header() {
                         src="/images/murmurations-logo.png"
                         alt="Murmurations logo"
                         width={"100%"}
-                        height={"70%"}
-                            maxHeight={"70%"}
+                            height={"70%"}
                     />
                     <Box paddingTop="2">
                             <Heading as="h1" fontSize="xl" color="text">
