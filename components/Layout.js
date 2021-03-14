@@ -1,10 +1,5 @@
 import * as React from "react"
-import { useState } from 'react'
-import useSWR from 'swr'
-
 import { Box, Select } from "@chakra-ui/react"
-
-import fetcher from '@/utils/fetcher'
 
 import Header from "./Header"
 import Footer from "./Footer"

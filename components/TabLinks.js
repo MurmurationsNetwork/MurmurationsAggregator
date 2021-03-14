@@ -8,13 +8,13 @@ function TabLinks() {
     const router = useRouter()
     if (router.pathname === '/')
         return (
-            <Flex justifyContent="space-evenly" w={["70%", "70%", "100%"]} mx="auto" py="4" flexDirection={["column", "column", "row"]} alignItems="center">
-                <Heading fontSize={["lg", "lg", "xl"]} color="brand.100" textDecoration="underline" marginBottom={[2, 2, 0]} sx={{ textUnderlineOffset: 5 }}>
+            <Flex justifyContent="space-evenly" w="100%" mx="auto" py="4" flexDirection={["column", "column", "row"]} alignItems="center">
+                <Heading fontSize={["md", "lg", "xl"]} color="brand.100" textDecoration="underline" marginBottom={[2, 2, 0]} sx={{ textUnderlineOffset: 5 }}>
                     View Map
                 </Heading>
                 <LinkBox>
                     <Box className="listing-link">
-                        <Heading fontSize={["lg", "lg", "xl"]}>
+                        <Heading fontSize={["md", "lg", "xl"]}>
                             <Box color="secondaryText"
                                 sx={{
                                     ".listing-link:hover &": {
@@ -35,10 +35,10 @@ function TabLinks() {
         )
     else if (router.pathname === '/directory')
         return (
-            <Flex justifyContent="space-evenly" w={["70%", "70%", "100%"]} mx="auto" py="4" flexDirection={["column", "column", "row"]} alignItems="center">
+            <Flex justifyContent="space-evenly" w={"100%"} mx="auto" py="4" flexDirection={["column", "column", "row"]} alignItems="center">
                 <LinkBox>
                     <Box className="map-link">
-                        <Heading fontSize={["lg", "lg", "xl"]} marginBottom={[2, 2, 0]}>
+                        <Heading fontSize={["md", "lg", "xl"]} marginBottom={[2, 2, 0]}>
                             <Box color="secondaryText"
                                 sx={{
                                     ".map-link:hover &": {
@@ -54,7 +54,7 @@ function TabLinks() {
                         </Heading>
                     </Box>
                 </LinkBox>
-                <Heading fontSize={["lg", "lg", "xl"]} color="brand.100" textDecoration="underline" sx={{ textUnderlineOffset: 5 }}>
+                <Heading fontSize={["md", "lg", "xl"]} color="brand.100" textDecoration="underline" sx={{ textUnderlineOffset: 5 }}>
                     View directory listing
                 </Heading>
             </Flex>
