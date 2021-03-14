@@ -26,6 +26,7 @@ function Layout({ children, setSchema }) {
                     <Select pos="absolute" top={["20%", "21%", "15%"]} right="10%" zIndex="1000" width={["70%", "70%", "30%"]} borderColor="brand.100" borderWidth="2px" bg="brand.500" placeholder="Select schema" onChange={(e) => handleChange(e.target.value)}>
                         <option value="complementary_currencies-v1"> Complementary Currency schema </option>
                         <option value="murmurations_map-v1">Murmurations map schema</option>
+                        <option value="test_schema-v1">Test Schema</option>
                         <option value="all">Apply all schemas</option>
                     </Select>
                     {children}
