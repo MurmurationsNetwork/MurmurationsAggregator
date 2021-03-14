@@ -88,8 +88,7 @@ const theme = extendTheme({ styles, colors, fonts, fontSizes })
 
 
 function MyApp({ Component, pageProps }) {
-  // get nodes from index to add their profile data to Firebase last validated after Unix timestamp
-  const time = (new Date().setHours(0, 0, 0, 0) / 1000).toString();
+  const time = Date.now() - 1000 * 300;
   const { data: indexData, error: indexError } = useSWR(`/api/node-index?last_validated=${time}`, fetcher);
 
   //get profile data from Firebase for UI use
