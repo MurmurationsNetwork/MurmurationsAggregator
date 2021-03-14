@@ -2,8 +2,16 @@
     display: flex;
     justify-content: space-between;
     list-style: none;
-    width: 66%;
+    width: 75%;
     margin: auto;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.active{
+  color: #F96A58;
+}
+
+.disabled {
+ color: #757575;
 }
