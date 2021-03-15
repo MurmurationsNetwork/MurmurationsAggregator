@@ -37,9 +37,14 @@ const Map = ({nodes}) => {
                 />
                 }
                   <Heading size="sm" paddingLeft="4">
-                        <a href={node.data.url || '/'}  target="_blank" rel="noopener noreferrer">
+                    {
+                      node.data.url || node.data.urls ?
+                        <a href={node.data.url || node.data.urls[0].url}  target="_blank" rel="noopener noreferrer">
+                          <LinkOverlay>{node.data.name}</LinkOverlay>
+                        </a> 
+                          : 
                         <LinkOverlay>{node.data.name}</LinkOverlay>
-                        </a>
+                    }
                   </Heading>
                 </Flex>
                   <Text>
