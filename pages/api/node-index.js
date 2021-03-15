@@ -13,9 +13,24 @@ export default async (req, res) => {
           nodes = await getNodesPageSize(req.query["last_validated"], nodes.meta.number_of_results)
         }
         for (let node of nodes.data) {
-          const profileData = await getProfileData(node.profile_url)
-          await addNode(profileData)
-          profilesAdded = profilesAdded + 1
+          let profileData = null;
+          try {
+            profileData = await getProfileData(node.profile_url)
+          } catch (error) {
+            console.error('Unable to get node profile data:', error)
+            continue;
+          }
+          if (profileData) {
+            try {
+              await addNode(profileData);
+            } catch (error) {
+              console.error('Unable to add node profile data to FB:', error)
+              continue;
+            }
+
+            profilesAdded = profilesAdded + 1;
+          }
+
         }
       } 
     }
