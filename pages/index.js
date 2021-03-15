@@ -1,8 +1,5 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-import useSWR from 'swr'
-import fetcher from '@/utils/fetcher'
-import { useState } from 'react'
 import { Spinner, Flex } from "@chakra-ui/react"
 
 

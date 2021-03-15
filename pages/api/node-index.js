@@ -1,3 +1,5 @@
+import { sha256 } from 'js-sha256'
+
 import { getNodes, getNodesPageSize, getProfileData } from '@/lib/api'
 import { addNode } from '@/lib/db'
 
@@ -22,7 +24,8 @@ export default async (req, res) => {
           }
           if (profileData) {
             try {
-              await addNode(profileData);
+              const nodeId = sha256(node.profile_url)
+              await addNode(nodeId, profileData);
             } catch (error) {
               console.error('Unable to add node profile data to FB:', error)
               continue;

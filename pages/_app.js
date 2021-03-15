@@ -90,7 +90,6 @@ const theme = extendTheme({ styles, colors, fonts, fontSizes })
 function MyApp({ Component, pageProps }) {
   useSWR(`/api/node-index?last_validated=${Date.now() - 300}`, fetcher);
 
-  //get profile data from Firebase for UI use
   const [schema, setSchema] = useState('all');
   const { data, error } = useSWR(schema === 'all' ? '/api/nodes' : `/api/nodes?schema=${schema}`, fetcher);
 
