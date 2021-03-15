@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Box, Select } from "@chakra-ui/react"
+import { useRouter } from 'next/router'
 
 import Header from "./Header"
 import Footer from "./Footer"
@@ -7,6 +8,7 @@ import TabLinks from "./TabLinks"
 
 
 function Layout({ children, setSchema }) {
+    const router = useRouter()
     const handleChange = (value) => {
         if (value) {
             setSchema(value)
@@ -23,7 +25,7 @@ function Layout({ children, setSchema }) {
                     <Box display={["block", "block", "none"]}>
                         <TabLinks />
                     </Box>
-                    <Select pos="absolute" top={["20%", "21%", "15%"]} right="10%" zIndex="1000" width={["70%", "70%", "30%"]} borderColor="brand.100" borderWidth="2px" bg="brand.500" placeholder="Select schema" onChange={(e) => handleChange(e.target.value)}>
+                    <Select pos="absolute" top={[`${router.pathname === '/' ? '22%' : '20%'}`, "21%", "15%"]} right="10%" zIndex="1000" width={["70%", "70%", "30%"]} borderColor="brand.100" borderWidth="2px" bg="brand.500" placeholder="Select schema" onChange={(e) => handleChange(e.target.value)}>
                         <option value="complementary_currencies-v1"> Complementary Currency schema </option>
                         <option value="murmurations_map-v1">Murmurations map schema</option>
                         <option value="test_schema-v1">Test Schema</option>
