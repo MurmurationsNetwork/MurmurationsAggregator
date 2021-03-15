@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import ReactPaginate from 'react-paginate';
-import { Text, Image, Heading, Flex, Box, LinkBox, LinkOverlay } from "@chakra-ui/react"
+import { Text, Image, Heading, Flex, Box, LinkBox, LinkOverlay, Spinner } from "@chakra-ui/react"
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -40,7 +40,10 @@ export default function Directory({ nodeData }) {
                 <title>Directory</title>
             </Head>
             <Box borderWidth={2} borderRadius="md" borderColor="black" width="85%" height={"80vh"} margin="auto" padding={["1", "8"]} paddingTop="12" overflowY="scroll" >
-                {loading ? <p>loading</p> :
+                {loading ?
+                    <Flex h="100%" justifyContent="center" alignItems='center'>
+                        <Spinner color="brand.100" />
+                    </Flex> :
                     nodePages[pageToShow].map((node) => {
                         return (
                             <div key={node.id}>

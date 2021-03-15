@@ -3,13 +3,16 @@ import dynamic from 'next/dynamic'
 import useSWR from 'swr'
 import fetcher from '@/utils/fetcher'
 import { useState } from 'react'
-import { Select } from "@chakra-ui/react"
+import { Spinner, Flex } from "@chakra-ui/react"
 
 
 const Map = dynamic(
   () => import('../components/Map'),
   {
-    loading: () => <p>A map is loading</p>,
+    loading: () =>
+      <Flex h="70vh" justifyContent="center" alignItems='center'>
+        <Spinner color="brand.100" />
+      </Flex>,
     ssr: false
   }
 )
@@ -20,7 +23,12 @@ export default function Home({ nodeData }) {
         <Head>
           <title>Map</title>
         </Head>
-        {!nodeData ? <p>loading</p> : <Map nodes={nodeData} />}
+        {!nodeData ?
+          <Flex h="70vh" justifyContent="center" alignItems='center'>
+            <Spinner color="brand.100" />
+          </Flex>
+          :
+          <Map nodes={nodeData} />}
     </div>
   )
 }
