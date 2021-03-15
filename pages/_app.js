@@ -88,7 +88,7 @@ const theme = extendTheme({ styles, colors, fonts, fontSizes })
 
 
 function MyApp({ Component, pageProps }) {
-  useSWR(`/api/node-index?last_validated=${Date.now() - 300}`, fetcher);
+  useSWR(`/api/node-index?last_validated=${Math.floor((Date.now() - 7200000) / 1000)}`, fetcher);
 
   const [schema, setSchema] = useState('all');
   const { data, error } = useSWR(schema === 'all' ? '/api/nodes' : `/api/nodes?schema=${schema}`, fetcher);
