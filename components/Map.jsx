@@ -40,10 +40,10 @@ const Map = ({nodes}) => {
                     {
                       node.data.url || node.data.urls ?
                         <a href={node.data.url || node.data.urls[0].url}  target="_blank" rel="noopener noreferrer">
-                          <LinkOverlay>{node.data.name}</LinkOverlay>
+                          <LinkOverlay wordBreak="break-all">{node.data.name}</LinkOverlay>
                         </a> 
                           : 
-                        <LinkOverlay>{node.data.name}</LinkOverlay>
+                        <LinkOverlay wordBreak="break-all">{node.data.name}</LinkOverlay>
                     }
                   </Heading>
                 </Flex>

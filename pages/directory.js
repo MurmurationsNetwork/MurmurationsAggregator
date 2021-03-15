@@ -60,9 +60,15 @@ export default function Directory({ nodeData }) {
                                             }
 
                                             <Heading size="sm" paddingLeft="4" textDecoration="underline">
-                                                <a href={node.data.url || node.data.urls[0].url} target="_blank" rel="noopener noreferrer">
-                                                    <LinkOverlay wordBreak="break-all">{node.data.name}</LinkOverlay>
-                                                </a>
+                                                {
+                                                    node.data.url || node.data.urls ?
+                                                        <a href={node.data.url || node.data.urls[0].url} target="_blank" rel="noopener noreferrer">
+                                                            <LinkOverlay wordBreak="break-all">{node.data.name}</LinkOverlay>
+                                                        </a>
+                                                        :
+                                                        <LinkOverlay wordBreak="break-all">{node.data.name}</LinkOverlay>
+                                                }
+
                                             </Heading>
                                         </Flex>
                                         <Text marginTop="2">{node.data.description}</Text>
