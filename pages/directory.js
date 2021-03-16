@@ -5,34 +5,46 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 
-export default function Directory({ nodeData }) {
+export default function Directory({ nodeData, searching, searchResults }) {
 
     const nodesPerPage = 10;
     const [loading, setLoading] = useState(true);
     const [pageToShow, setPageToShow] = useState(0);
     const [nodePages, setNodePages] = useState([]);
-
-    useEffect(() => {
-        if (nodeData) {
-            let nodePagesToAdd = nodeData.reduce((resultArray, node, index) => {
-                const pageIndex = Math.floor(index / nodesPerPage);
-
-                if (!resultArray[pageIndex]) {
-                    resultArray[pageIndex] = [];
-                }
-
-                resultArray[pageIndex].push(node);
-
-                return resultArray;
-            }, [])
-            setNodePages(nodePagesToAdd);
-            setLoading(false);
-        }
-    }, [nodeData])
-
+    
     const handlePageClick = (data) => {
         setPageToShow(data.selected);
     }
+
+    const splitIntoPages = (nodes) => {
+        return nodes.reduce((resultArray, node, index) => {
+            const pageIndex = Math.floor(index / nodesPerPage);
+
+            if (!resultArray[pageIndex]) {
+                resultArray[pageIndex] = [];
+            }
+
+            resultArray[pageIndex].push(node);
+
+            return resultArray;
+        }, [])
+    }
+
+    useEffect(() => {
+        if (searching) {
+            let nodePagesToAdd = splitIntoPages(searchResults);
+            setNodePages(nodePagesToAdd);
+            setLoading(false);
+        } else {
+            if (nodeData) {
+                let nodePagesToAdd = splitIntoPages(nodeData);
+                setNodePages(nodePagesToAdd);
+                setLoading(false);
+            }
+        }
+
+    }, [nodeData, searching, searchResults])
+
 
     return (
         <div>
@@ -44,39 +56,37 @@ export default function Directory({ nodeData }) {
                     <Flex h="100%" justifyContent="center" alignItems='center'>
                         <Spinner color="brand.100" />
                     </Flex> :
+                    nodePages[pageToShow] ?
                     nodePages[pageToShow].map((node) => {
+                        if (node.data) node = node.data;
                         return (
-                            <div key={node.id}>
+                            <div key={node.id || node.objectID}>
                                 <Box borderWidth={2} borderRadius="md" borderColor="black" backgroundColor="brand.600" maxWidth="80%" margin="auto" marginBottom="4" padding="4">
                                     <LinkBox>
                                         <Flex alignItems="center">
-                                            {node.data.image &&
-                                             <Image
-                                                src={node.data.image[0].url}
+                                            <Image
+                                                src={node.image[0].url}
                                                 alt="Node logo"
                                                 maxWidth={"50%"}
                                                 height={8}
                                             />
-                                            }
-
                                             <Heading size="sm" paddingLeft="4" textDecoration="underline">
                                                 {
-                                                    node.data.url || node.data.urls ?
-                                                        <a href={node.data.url || node.data.urls[0].url} target="_blank" rel="noopener noreferrer">
-                                                            <LinkOverlay wordBreak="break-all">{node.data.name}</LinkOverlay>
+                                                    node.url || node.urls ?
+                                                        <a href={node.url || node.urls[0].url} target="_blank" rel="noopener noreferrer">
+                                                            <LinkOverlay wordBreak="break-all">{node.name}</LinkOverlay>
                                                         </a>
                                                         :
-                                                        <LinkOverlay wordBreak="break-all">{node.data.name}</LinkOverlay>
+                                                        <LinkOverlay wordBreak="break-all">{node.name}</LinkOverlay>
                                                 }
-
                                             </Heading>
                                         </Flex>
-                                        <Text marginTop="2">{node.data.description}</Text>
+                                        <Text marginTop="2">{node.description}</Text>
                                     </LinkBox>
                                 </Box>
                             </div>
                         );
-                    })
+                    }) : <p>No results</p>
                 }
             </Box>
             <ReactPaginate

@@ -22,15 +22,16 @@ const Map = ({nodes}) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {nodes.map((node) => {
+        if(node.data) node = node.data;
         return(
-          <div key={`${node.id}`}>
-            <Marker position={[parseFloat(node.data.geolocation.lat), parseFloat(node.data.geolocation.lon)]}>
+          <div key={`${node.id || node.objectID}`}>
+            <Marker position={[parseFloat(node.geolocation.lat), parseFloat(node.geolocation.lon)]}>
               <Popup>
                 <LinkBox>
                 <Flex alignItems="center">
-                {node.data.image &&
+                {node.image &&
                   <Image
-                    src={node.data.image[0].url}
+                    src={node.image[0].url}
                     alt="Node logo"
                     maxWidth={"50%"}
                     height={8}
@@ -38,17 +39,17 @@ const Map = ({nodes}) => {
                 }
                   <Heading size="sm" paddingLeft="4">
                     {
-                      node.data.url || node.data.urls ?
-                        <a href={node.data.url || node.data.urls[0].url}  target="_blank" rel="noopener noreferrer">
-                          <LinkOverlay wordBreak="break-all">{node.data.name}</LinkOverlay>
+                      node.url || node.urls ?
+                        <a href={node.url || node.urls[0].url}  target="_blank" rel="noopener noreferrer">
+                          <LinkOverlay wordBreak="break-all">{node.name}</LinkOverlay>
                         </a> 
                           : 
-                        <LinkOverlay wordBreak="break-all">{node.data.name}</LinkOverlay>
+                        <LinkOverlay wordBreak="break-all">{node.name}</LinkOverlay>
                     }
                   </Heading>
                 </Flex>
                   <Text>
-                    {node.data.description}
+                    {node.description}
                   </Text>
                 </LinkBox>
               </Popup>

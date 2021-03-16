@@ -4,7 +4,10 @@ import { ChakraProvider } from "@chakra-ui/react"
 import { extendTheme } from "@chakra-ui/react"
 import { Global } from "@emotion/react"
 import fetcher from '@/utils/fetcher'
+import { algoliaSearchClient } from '@/lib/algolia'
 import useSWR from 'swr'
+import { debounce } from 'lodash'
+
 
 import '../styles/globals.css'
 
@@ -92,12 +95,30 @@ function MyApp({ Component, pageProps }) {
 
   const [schema, setSchema] = useState('all');
   const { data, error } = useSWR(schema === 'all' ? '/api/nodes' : `/api/nodes?schema=${schema}`, fetcher);
+  const index = algoliaSearchClient.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_APPLICATION_INDEX);
+  const [searching, setSearching] = React.useState(false);
+  const [searchResults, setSearchResults] = React.useState([])
+  const delayedSearch = debounce(query => {
+    index.search(query).then(function (responses) {
+      setSearchResults(responses.hits);
+    });
+  }, 1000);
+
+  const handleSearch = (query) => {
+    if (query.length > 2) {
+      setSearching(true)
+      delayedSearch(query);
+    } else {
+      setSearching(false);
+    }
+  }
+
 
   return (
     <ChakraProvider theme={theme}>
       <Fonts />
-      <Layout setSchema={setSchema}>
-        <Component {...pageProps} nodeData={data} />
+      <Layout setSchema={setSchema} handleSearch={handleSearch} searching={searching}>
+        <Component {...pageProps} nodeData={data} searchResults={searchResults} searching={searching} />
       </Layout>
     </ChakraProvider>
   )

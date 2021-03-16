@@ -14,7 +14,13 @@ const Map = dynamic(
   }
 )
 
-export default function Home({ nodeData }) {
+export default function Home({ nodeData, searching, searchResults }) {
+  let nodes = []
+  if (searching) {
+    nodes = searchResults;
+  } else {
+    nodes = nodeData;
+  }
     return (
       <div>
         <Head>
@@ -25,7 +31,10 @@ export default function Home({ nodeData }) {
             <Spinner color="brand.100" />
           </Flex>
           :
-          <Map nodes={nodeData} />}
+          nodes ?
+            <Map nodes={nodes} /> :
+            <p>No results found</p>
+        }
     </div>
   )
 }
