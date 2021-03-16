@@ -58,7 +58,11 @@ export default function Directory({ nodeData, searching, searchResults }) {
                     </Flex> :
                     nodePages[pageToShow] ?
                     nodePages[pageToShow].map((node) => {
-                        if (node.data) node = node.data;
+                        if (node.data) {
+                            const id = node.id;
+                            node = node.data;
+                            node.id = id;
+                        }
                         return (
                             <div key={node.id || node.objectID}>
                                 <Box borderWidth={2} borderRadius="md" borderColor="black" backgroundColor="brand.600" maxWidth="80%" margin="auto" marginBottom="4" padding="4">
@@ -81,7 +85,11 @@ export default function Directory({ nodeData, searching, searchResults }) {
                                                 }
                                             </Heading>
                                         </Flex>
-                                        <Text marginTop="2">{node.description}</Text>
+                                        {node.description &&
+                                            <Text marginTop="2">
+                                                {node.description.length > 350 ? `${node.description.slice(0, 350)}...` : node.description}
+                                            </Text>
+                                        }
                                     </LinkBox>
                                 </Box>
                             </div>

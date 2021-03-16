@@ -22,7 +22,11 @@ const Map = ({nodes}) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {nodes.map((node) => {
-        if(node.data) node = node.data;
+        if (node.data) {
+          const id = node.id;
+          node = node.data;
+          node.id = id;
+        }
         return(
           <div key={`${node.id || node.objectID}`}>
             <Marker position={[parseFloat(node.geolocation.lat), parseFloat(node.geolocation.lon)]}>
@@ -37,7 +41,7 @@ const Map = ({nodes}) => {
                     height={8}
                 />
                 }
-                  <Heading size="sm" paddingLeft="4">
+                <Heading size="sm" paddingLeft="4">
                     {
                       node.url || node.urls ?
                         <a href={node.url || node.urls[0].url}  target="_blank" rel="noopener noreferrer">
@@ -46,11 +50,13 @@ const Map = ({nodes}) => {
                           : 
                         <LinkOverlay wordBreak="break-all">{node.name}</LinkOverlay>
                     }
-                  </Heading>
+                </Heading>
                 </Flex>
+                {node.description && 
                   <Text>
-                    {node.description}
+                      {node.description.length > 250 ? `${node.description.slice(0,250)}...`: node.description}
                   </Text>
+                }
                 </LinkBox>
               </Popup>
             </Marker>
