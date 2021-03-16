@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Box, Select, Input, Flex } from "@chakra-ui/react"
+import { Box, Select, Input, Flex, InputGroup, InputRightElement, CloseButton } from "@chakra-ui/react"
 import { useRouter } from 'next/router'
 
 import Header from "./Header"
@@ -9,6 +9,7 @@ import TabLinks from "./TabLinks"
 
 function Layout({ children, setSchema, handleSearch, searching }) {
     const router = useRouter()
+    const [input, setInput] = React.useState("")
     const handleSchemaChange = (value) => {
         if (value) {
             setSchema(value)
@@ -45,15 +46,20 @@ function Layout({ children, setSchema, handleSearch, searching }) {
                         </Select>
                     }
                     <Flex justifyContent="center" py="2" >
-                        <Input placeholder="Search"
-                            width={["70%", "70%", "40%"]}
-                            borderColor="brand.100"
-                            borderWidth="2px"
-                            bg="brand.500"
-                            onChange={(e) => {
-                                handleSearch(e.target.value);
-                            }}
+                        <InputGroup width={["70%", "70%", "40%"]}>
+                            <Input placeholder="Search"
+                                borderColor="brand.100"
+                                borderWidth="2px"
+                                bg="brand.500"
+                                value={input}
+                                onChange={(e) => {
+                                    setInput(e.target.value);
+                                    handleSearch(e.target.value);
+                                }}
                         />
+                            {input.length > 0 ? <InputRightElement children={<CloseButton type="button" onClick={() => { setInput(""); handleSearch(""); }} />} /> : null}
+                        </InputGroup>
+
                     </Flex>
 
                     {children}
