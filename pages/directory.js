@@ -68,12 +68,14 @@ export default function Directory({ nodeData, searching, searchResults }) {
                                 <Box borderWidth={2} borderRadius="md" borderColor="black" backgroundColor="brand.600" maxWidth="80%" margin="auto" marginBottom="4" padding="4">
                                     <LinkBox>
                                         <Flex alignItems="center">
-                                            <Image
-                                                src={node.image[0].url}
-                                                alt="Node logo"
-                                                maxWidth={"50%"}
-                                                height={8}
-                                            />
+                                            {node.image &&
+                                                <Image
+                                                    src={node.image[0].url}
+                                                    alt="Node logo"
+                                                    maxWidth={"50%"}
+                                                    height={8}
+                                                />
+                                            }
                                             <Heading size="sm" paddingLeft="4" textDecoration="underline">
                                                 {
                                                     node.url || node.urls ?

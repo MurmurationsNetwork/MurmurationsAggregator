@@ -28,7 +28,7 @@ function Layout({ children, setSchema, handleSearch, searching }) {
                     {searching ?
                         null
                         :
-                        <Select pos="absolute" top={[`${router.pathname === '/' ? '26%' : '23.5%'}`, "27%", "25%"]}
+                        <Select pos="absolute" top={[`${router.pathname === '/' ? '26%' : '23.5%'}`, "19%", "17%"]}
                             right="10%"
                             zIndex="1000"
                             width={["70%", "70%", "30%"]}
