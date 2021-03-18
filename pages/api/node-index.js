@@ -2,48 +2,42 @@ import { sha256 } from 'js-sha256'
 
 import { getNodes, getNodesPageSize, getProfileData } from '@/lib/api'
 import { addNode } from '@/lib/db'
-import { algoliaClient } from '@/lib/algolia'
 
 export default async (req, res) => {
-  let nodes = {};
-  let profilesAdded = 0;
+  let nodes = {}
+  let profilesAdded = 0
 
   try {
-    if (req.query["last_validated"]) {
-      nodes = await getNodes(req.query["last_validated"])
+    if (req.query['last_validated']) {
+      nodes = await getNodes(req.query['last_validated'])
       if (nodes.data) {
         if (nodes.meta.total_pages > 1) {
-          nodes = await getNodesPageSize(req.query["last_validated"], nodes.meta.number_of_results)
+          nodes = await getNodesPageSize(req.query['last_validated'], nodes.meta.number_of_results)
         }
         for (let node of nodes.data) {
-          let profileData = null;
+          let profileData = null
           try {
             profileData = await getProfileData(node.profile_url)
           } catch (error) {
             console.error('Unable to get node profile data:', error)
-            continue;
+            continue
           }
           if (profileData) {
             try {
-              const nodeId = sha256(node.profile_url);
-              await addNode(nodeId, profileData);
+              const nodeId = sha256(node.profile_url)
+              await addNode(nodeId, profileData)
             } catch (error) {
               console.error('Unable to add node profile data to FB:', error)
-              continue;
+              continue
             }
 
-            profilesAdded = profilesAdded + 1;
+            profilesAdded = profilesAdded + 1
           }
-
         }
-      } 
+      }
     }
-    res.status(200).json(
-      { "profilesAdded": profilesAdded }
-    )
+    res.status(200).json({ profilesAdded: profilesAdded })
   } catch (error) {
     res.status(500).json({ error })
   }
-
-
 }
