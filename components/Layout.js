@@ -38,6 +38,7 @@ function Layout({ children, setSchema, handleSearch, searching }) {
                             bg="brand.500"
                             placeholder="Select schema"
                             onChange={(e) => handleSchemaChange(e.target.value)}
+                            autoComplete="off"
                         >
                             <option value="complementary_currencies-v1"> Complementary Currency schema </option>
                             <option value="murmurations_map-v1">Murmurations map schema</option>
