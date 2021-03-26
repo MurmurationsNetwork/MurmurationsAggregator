@@ -26,7 +26,7 @@ function Header() {
           </Flex>
 
           <Spacer />
-          <Box display={['none', 'none', 'block']} w="450px">
+          <Box display={['none', 'none', 'block']} w="550px">
             <TabLinks />
           </Box>
         </Flex>

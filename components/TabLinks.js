@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, LinkBox, LinkOverlay } from '@chakra-ui/react'
+import { Box, Flex, Heading, Link, LinkBox, LinkOverlay } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -7,7 +7,7 @@ function TabLinks() {
   if (router.pathname === '/')
     return (
       <Flex
-        justifyContent="space-evenly"
+        justifyContent="space-between"
         w="100%"
         mx="auto"
         py="4"
@@ -37,8 +37,26 @@ function TabLinks() {
                 }}
               >
                 <NextLink href="/directory" passHref>
-                  <LinkOverlay>View directory listing</LinkOverlay>
+                  <LinkOverlay>View Directory</LinkOverlay>
                 </NextLink>
+              </Box>
+            </Heading>
+          </Box>
+        </LinkBox>
+        <LinkBox>
+          <Box className="listing-link">
+            <Heading fontSize={['md', 'lg', 'xl']}>
+              <Box
+                color="secondaryText"
+                sx={{
+                  '.listing-link:hover &': {
+                    color: 'brand.100',
+                    textDecoration: 'underline',
+                    textUnderlineOffset: 5
+                  }
+                }}
+              >
+                <Link href={process.env.NEXT_PUBLIC_MURMURATIONS_MPG_URL}>Create Profile</Link>
               </Box>
             </Heading>
           </Box>
@@ -81,8 +99,26 @@ function TabLinks() {
           textDecoration="underline"
           sx={{ textUnderlineOffset: 5 }}
         >
-          View directory listing
+          View Directory
         </Heading>
+        <LinkBox>
+          <Box className="map-link">
+            <Heading fontSize={['md', 'lg', 'xl']} marginBottom={[2, 2, 0]}>
+              <Box
+                color="secondaryText"
+                sx={{
+                  '.map-link:hover &': {
+                    color: 'brand.100',
+                    textDecoration: 'underline',
+                    textUnderlineOffset: 5
+                  }
+                }}
+              >
+                <Link href={process.env.NEXT_PUBLIC_MURMURATIONS_MPG_URL}>Create Profile</Link>
+              </Box>
+            </Heading>
+          </Box>
+        </LinkBox>
       </Flex>
     )
   else return null
