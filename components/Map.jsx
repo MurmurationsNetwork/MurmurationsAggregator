@@ -29,37 +29,40 @@ const Map = ({nodes}) => {
         }
         return(
           <div key={`${node.id || node.objectID}`}>
-            <Marker position={[parseFloat(node.geolocation.lat), parseFloat(node.geolocation.lon)]}>
-              <Popup>
-                <LinkBox>
-                <Flex alignItems="center">
-                {node.image &&
-                  <Image
-                    src={node.image[0].url}
-                    alt="Node logo"
-                    maxWidth={"50%"}
-                    height={8}
-                />
-                }
-                <Heading size="sm" paddingLeft="4">
-                    {
-                      node.url || node.urls ?
-                        <a href={node.url || node.urls[0].url}  target="_blank" rel="noopener noreferrer">
-                          <LinkOverlay wordBreak="break-all">{node.name}</LinkOverlay>
-                        </a> 
-                          : 
+            {node.geolocation ?
+            (<Marker position={[parseFloat(node.geolocation.lat), parseFloat(node.geolocation.lon)]}>
+            <Popup>
+              <LinkBox>
+              <Flex alignItems="center">
+              {node.image &&
+                <Image
+                  src={node.image[0].url}
+                  alt="Node logo"
+                  maxWidth={"50%"}
+                  height={8}
+              />
+              }
+              <Heading size="sm" paddingLeft="4">
+                  {
+                    node.url || node.urls ?
+                      <a href={node.url || node.urls[0].url}  target="_blank" rel="noopener noreferrer">
                         <LinkOverlay wordBreak="break-all">{node.name}</LinkOverlay>
-                    }
-                </Heading>
-                </Flex>
-                {node.description && 
-                  <Text>
-                      {node.description.length > 250 ? `${node.description.slice(0,250)}...`: node.description}
-                  </Text>
-                }
-                </LinkBox>
-              </Popup>
-            </Marker>
+                      </a> 
+                        : 
+                      <LinkOverlay wordBreak="break-all">{node.name}</LinkOverlay>
+                  }
+              </Heading>
+              </Flex>
+              {node.description && 
+                <Text>
+                    {node.description.length > 250 ? `${node.description.slice(0,250)}...`: node.description}
+                </Text>
+              }
+              </LinkBox>
+            </Popup>
+          </Marker>):
+          null}
+            
           </div>
           )    
       })}
