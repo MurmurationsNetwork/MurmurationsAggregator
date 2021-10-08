@@ -49,6 +49,9 @@ function Layout({ children, setSchema, handleSearch, searching }) {
             >
               <option value="complementary_currencies-v1"> Complementary Currency schema </option>
               <option value="murmurations_map-v1">Murmurations map schema</option>
+              <option value="solidarity_economy_initiatives-v0.1.0">
+                Solidarity Economy Initiatives
+              </option>
               <option value="test_schema-v1">Test Schema</option>
               <option value="all">Apply all schemas</option>
             </Select>
