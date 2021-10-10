@@ -52,6 +52,7 @@ function Layout({ children, setSchema, handleSearch, searching }) {
               <option value="solidarity_economy_initiatives-v0.1.0">
                 Solidarity Economy Initiatives
               </option>
+              <option value="systems_change_map-v1">Systems Change map schema</option>
               <option value="test_schema-v1">Test Schema</option>
               <option value="all">Apply all schemas</option>
             </Select>
